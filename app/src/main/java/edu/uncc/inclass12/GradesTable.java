@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class GradesTable {
 
+    static final String GRADE_ID = "gradeId";
     static final String GRADES_TABLE = "grades";
     static final String COURSE_NUMBER = "courseNumber";
     static final String COURSE_NAME = "courseName";
@@ -19,6 +20,7 @@ public class GradesTable {
         StringBuilder sb = new StringBuilder();
 
         sb.append("CREATE TABLE " + GradesTable.GRADES_TABLE + " (");
+        sb.append(GRADE_ID + " integer primary key autoincrement, ");
         sb.append(COURSE_NUMBER + " text not null, ");
         sb.append(COURSE_NAME + " text not null, ");
         sb.append(COURSE_GRADE + " text not null, ");

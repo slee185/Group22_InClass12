@@ -6,11 +6,15 @@ package edu.uncc.inclass12;
 
 public class Grade {
 
+    long gradeId;
     int courseNumber;
     String courseName, courseGrade;
     double creditHours;
 
-    public Grade(int courseNumber, String courseName, String courseGrade, double creditHours) {
+    public Grade(){}
+
+    public Grade(long gradeId, int courseNumber, String courseName, String courseGrade, double creditHours) {
+        this.gradeId = gradeId;
         this.courseNumber = courseNumber;
         this.courseName = courseName;
         this.courseGrade = courseGrade;
@@ -31,6 +35,10 @@ public class Grade {
 
     public double getCreditHours() {
         return creditHours;
+    }
+
+    public long getGradeId() {
+        return gradeId;
     }
 
     public Grade setCourseNumber(int courseNumber) {
@@ -54,10 +62,16 @@ public class Grade {
         return this;
     }
 
+    public Grade setGradeId(long gradeId) {
+        this.gradeId = gradeId;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Grade{" +
-                "courseNumber=" + courseNumber +
+                "gradeId=" + gradeId +
+                ", courseNumber=" + courseNumber +
                 ", courseName='" + courseName + '\'' +
                 ", courseGrade='" + courseGrade + '\'' +
                 ", creditHours=" + creditHours +
