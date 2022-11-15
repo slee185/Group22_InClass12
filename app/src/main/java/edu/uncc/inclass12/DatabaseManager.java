@@ -12,10 +12,16 @@ public class DatabaseManager {
     Context mContext;
     SQLiteDatabase db;
     DatabaseHelper dbOpenHelper;
+    GradesDAO gradesDAO;
 
     public DatabaseManager(Context context) {
         this.mContext = context;
         dbOpenHelper = new DatabaseHelper(mContext);
         db = dbOpenHelper.getWritableDatabase();
+        gradesDAO = new GradesDAO(db);
+    }
+
+    public GradesDAO getGradesDAO() {
+        return gradesDAO;
     }
 }
