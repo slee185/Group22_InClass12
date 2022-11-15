@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GradesFragment.GradesListener {
 
     DatabaseManager dm;
 
@@ -20,6 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.rootView, new GradesFragment())
+                .commit();
+    }
+
+    @Override
+    public void goAddCourse() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.rootView, new AddCourseFragment())
+                .addToBackStack(null)
                 .commit();
     }
 }

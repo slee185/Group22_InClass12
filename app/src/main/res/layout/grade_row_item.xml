@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="6dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -16,7 +15,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewCourseLetterGrade"
@@ -27,7 +25,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textViewCourseNumber"
             app:layout_constraintTop_toBottomOf="@+id/textViewCourseNumber" />
@@ -38,7 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="TextView"
             app:layout_constraintEnd_toStartOf="@+id/imageViewDelete"
             app:layout_constraintStart_toStartOf="@+id/textViewCourseNumber"
             app:layout_constraintTop_toBottomOf="@+id/textViewCourseName" />
@@ -55,7 +51,6 @@
             android:id="@+id/textViewCourseLetterGrade"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="A"
             android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

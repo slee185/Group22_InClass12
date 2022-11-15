@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class GradesRecyclerAdapter extends RecyclerView.Adapter<GradesRecyclerAdapter.GradeViewHolder> {
+
     ArrayList<Grade> grades;
 
     public GradesRecyclerAdapter(ArrayList<Grade> data) {
