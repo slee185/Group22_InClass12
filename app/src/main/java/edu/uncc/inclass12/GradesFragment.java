@@ -29,7 +29,7 @@ import java.util.Locale;
 
 import edu.uncc.inclass12.databinding.FragmentGradesBinding;
 
-public class GradesFragment extends Fragment {
+public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iGrades {
 
     FragmentGradesBinding binding;
     DatabaseManager dm;
@@ -80,7 +80,7 @@ public class GradesFragment extends Fragment {
         binding.gradesRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         gradesRecyclerView.setLayoutManager(layoutManager);
-        adapter = new GradesRecyclerAdapter(grades);
+        adapter = new GradesRecyclerAdapter(getActivity(), grades, this);
         gradesRecyclerView.setAdapter(adapter);
 
         binding.textViewGPA.setText("GPA: " + points);
@@ -111,6 +111,11 @@ public class GradesFragment extends Fragment {
     private void setHours(Double hours) {
         TextView textView = binding.textViewHours;
         textView.setText(getString(R.string.grades_hours_label, hours));
+    }
+
+    @Override
+    public void trashButtonClicked(Grade grade) {
+        dm.getGradesDAO().delete(grade);
     }
 
     interface GradesListener {

@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity implements GradesFragment.GradesListener {
+import java.util.UUID;
+
+public class MainActivity extends AppCompatActivity implements GradesFragment.GradesListener, AddCourseFragment.AddCourseListener {
 
     DatabaseManager dm;
 
@@ -29,5 +31,17 @@ public class MainActivity extends AppCompatActivity implements GradesFragment.Gr
                 .replace(R.id.rootView, new AddCourseFragment())
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void createGrade(String course_number, String course_name, String course_grade, Double course_hours) {
+        Grade grade = new Grade(course_number, course_name, course_grade, course_hours);
+        dm.getGradesDAO().save(grade);
+        goGrades();
+    }
+
+    @Override
+    public void goGrades() {
+        getSupportFragmentManager().popBackStack();
     }
 }

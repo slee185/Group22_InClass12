@@ -4,6 +4,7 @@
 
 package edu.uncc.inclass12;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,9 @@ import android.widget.Toast;
 import edu.uncc.inclass12.databinding.FragmentAddCourseBinding;
 
 public class AddCourseFragment extends Fragment {
+
+    FragmentAddCourseBinding binding;
+
     public AddCourseFragment() {
         // Required empty public constructor
     }
@@ -27,10 +31,8 @@ public class AddCourseFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    FragmentAddCourseBinding binding;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentAddCourseBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -38,6 +40,8 @@ public class AddCourseFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.buttonCancel.setOnClickListener(v -> mListener.goGrades());
 
         binding.buttonSubmit.setOnClickListener(v -> {
 
@@ -63,9 +67,21 @@ public class AddCourseFragment extends Fragment {
                 } else {
                     courseLetterGrade = "F";
                 }
-
+                mListener.createGrade(courseNumber, courseName, courseLetterGrade, courseHours);
             }
         });
+    }
 
+    AddCourseListener mListener;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mListener = (AddCourseListener) context;
+    }
+
+    interface AddCourseListener {
+        void createGrade(String course_number, String course_name, String course_grade, Double course_hours);
+        void goGrades();
     }
 }

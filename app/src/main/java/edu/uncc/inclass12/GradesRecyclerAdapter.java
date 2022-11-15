@@ -4,9 +4,11 @@
 
 package edu.uncc.inclass12;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,16 +19,22 @@ import java.util.ArrayList;
 public class GradesRecyclerAdapter extends RecyclerView.Adapter<GradesRecyclerAdapter.GradeViewHolder> {
 
     ArrayList<Grade> grades;
+    iGrades iListener;
+    Context layout;
+    LayoutInflater mInflater;
 
-    public GradesRecyclerAdapter(ArrayList<Grade> data) {
+    public GradesRecyclerAdapter(Context layout, ArrayList<Grade> data, iGrades iListener) {
         this.grades = data;
+        this.iListener = iListener;
+        this.mInflater = LayoutInflater.from(layout);
+        this.layout = layout;
     }
 
     @NonNull
     @Override
     public GradeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grade_row_item, parent, false);
-        return new GradeViewHolder(view);
+        return new GradeViewHolder(view, iListener);
     }
 
     @Override
@@ -36,6 +44,7 @@ public class GradesRecyclerAdapter extends RecyclerView.Adapter<GradesRecyclerAd
         holder.textViewCourseName.setText(grade.courseName);
         holder.textViewCourseHours.setText((int) grade.creditHours);
         holder.textViewCourseLetterGrade.setText(grade.courseGrade);
+        holder.imageViewDelete.setOnClickListener(v -> iListener.trashButtonClicked(grade));
     }
 
     @Override
@@ -49,15 +58,22 @@ public class GradesRecyclerAdapter extends RecyclerView.Adapter<GradesRecyclerAd
         TextView textViewCourseName;
         TextView textViewCourseHours;
         TextView textViewCourseLetterGrade;
-        View rootView;
+        ImageView imageViewDelete;
+        iGrades iListener;
 
-        public GradeViewHolder(@NonNull View itemView) {
+        public GradeViewHolder(@NonNull View itemView, iGrades iListener) {
             super(itemView);
-            rootView = itemView;
+            this.iListener = iListener;
+
             textViewCourseNumber = itemView.findViewById(R.id.textViewCourseNumber);
             textViewCourseName = itemView.findViewById(R.id.textViewCourseName);
             textViewCourseHours = itemView.findViewById(R.id.textViewCourseHours);
             textViewCourseLetterGrade = itemView.findViewById(R.id.textViewCourseLetterGrade);
+            imageViewDelete = itemView.findViewById(R.id.imageViewDelete);
         }
+    }
+
+    public interface iGrades {
+        void trashButtonClicked(Grade grade);
     }
 }
