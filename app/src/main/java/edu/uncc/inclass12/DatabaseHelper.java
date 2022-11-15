@@ -21,6 +21,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
+    public void onOpen(SQLiteDatabase db) {
+        super.onOpen(db);
+    }
+
+    @Override
     public void onCreate(SQLiteDatabase db) {
         GradesTable.onCreate(db);
     }
@@ -28,5 +33,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         GradesTable.onUpgrade(db, oldVersion, newVersion);
+        GradesTable.onCreate(db);
     }
 }
