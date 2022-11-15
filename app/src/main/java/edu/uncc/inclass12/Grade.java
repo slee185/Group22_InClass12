@@ -7,13 +7,13 @@ package edu.uncc.inclass12;
 public class Grade {
 
     long gradeId;
-    int courseNumber;
+    String courseNumber;
     String courseName, courseGrade;
     double creditHours;
 
     public Grade(){}
 
-    public Grade(long gradeId, int courseNumber, String courseName, String courseGrade, double creditHours) {
+    public Grade(long gradeId, String courseNumber, String courseName, String courseGrade, double creditHours) {
         this.gradeId = gradeId;
         this.courseNumber = courseNumber;
         this.courseName = courseName;
@@ -21,7 +21,7 @@ public class Grade {
         this.creditHours = creditHours;
     }
 
-    public int getCourseNumber() {
+    public String getCourseNumber() {
         return courseNumber;
     }
 
@@ -41,7 +41,7 @@ public class Grade {
         return gradeId;
     }
 
-    public Grade setCourseNumber(int courseNumber) {
+    public Grade setCourseNumber(String courseNumber) {
         this.courseNumber = courseNumber;
         return this;
     }

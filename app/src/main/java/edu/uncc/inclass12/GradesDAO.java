@@ -82,7 +82,7 @@ public class GradesDAO {
     private Grade buildGradeFromCursor(Cursor cursor) {
         Grade grade = new Grade();
         grade.setGradeId(cursor.getLong(0));
-        grade.setCourseNumber(cursor.getInt(1));
+        grade.setCourseNumber(cursor.getString(1));
         grade.setCourseName(cursor.getString(2));
         grade.setCourseGrade(cursor.getString(3));
         grade.setCreditHours(cursor.getDouble(4));
