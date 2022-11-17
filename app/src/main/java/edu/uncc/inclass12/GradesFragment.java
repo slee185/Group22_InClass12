@@ -39,6 +39,10 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     LinearLayoutManager layoutManager;
     List<Grade> grades = new ArrayList<>();
 
+    public GradesFragment(DatabaseManager dm) {
+        this.dm = dm;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +73,6 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        dm = new DatabaseManager(requireActivity());
 
         binding.gradesRecyclerView.setHasFixedSize(true);
 
