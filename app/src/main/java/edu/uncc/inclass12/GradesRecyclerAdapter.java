@@ -15,15 +15,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GradesRecyclerAdapter extends RecyclerView.Adapter<GradesRecyclerAdapter.GradeViewHolder> {
 
-    ArrayList<Grade> grades;
+    List<Grade> grades;
     iGrades iListener;
     Context layout;
     LayoutInflater mInflater;
 
-    public GradesRecyclerAdapter(Context layout, ArrayList<Grade> data, iGrades iListener) {
+    public GradesRecyclerAdapter(Context layout, List<Grade> data, iGrades iListener) {
         this.grades = data;
         this.iListener = iListener;
         this.mInflater = LayoutInflater.from(layout);

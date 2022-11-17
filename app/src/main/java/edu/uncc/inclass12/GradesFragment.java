@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import edu.uncc.inclass12.databinding.FragmentGradesBinding;
@@ -35,8 +36,7 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     DatabaseManager dm;
     LinearLayoutManager layoutManager;
     GradesRecyclerAdapter adapter;
-    RecyclerView gradesRecyclerView;
-    ArrayList<Grade> grades;
+    List<Grade> grades = new ArrayList<>();
     Double hours = 0.0;
     Double points = 0.0;
 
@@ -78,10 +78,12 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
         dm = new DatabaseManager(getActivity());
 
         binding.gradesRecyclerView.setHasFixedSize(true);
+
         layoutManager = new LinearLayoutManager(getActivity());
-        gradesRecyclerView.setLayoutManager(layoutManager);
+        binding.gradesRecyclerView.setLayoutManager(layoutManager);
+
         adapter = new GradesRecyclerAdapter(getActivity(), grades, this);
-        gradesRecyclerView.setAdapter(adapter);
+        binding.gradesRecyclerView.setAdapter(adapter);
 
         binding.textViewGPA.setText("GPA: " + points);
         binding.textViewHours.setText("Hours: " + hours);
