@@ -39,10 +39,6 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     Double hours = 0.0;
     Double points = 0.0;
 
-    public GradesFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
