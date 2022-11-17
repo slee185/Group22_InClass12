@@ -144,6 +144,8 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     @Override
     public void trashButtonClicked(Grade grade) {
         dm.getGradesDAO().delete(grade);
+
+        updateGrades();
     }
 
     interface GradesListener {
