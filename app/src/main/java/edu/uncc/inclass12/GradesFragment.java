@@ -4,6 +4,7 @@
 
 package edu.uncc.inclass12;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -79,6 +80,8 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
         layoutManager = new LinearLayoutManager(requireActivity());
         binding.gradesRecyclerView.setLayoutManager(layoutManager);
 
+        updateGrades();
+
         adapter = new GradesRecyclerAdapter(requireActivity(), grades, this);
         binding.gradesRecyclerView.setAdapter(adapter);
 
@@ -88,7 +91,6 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     @Override
     public void onResume() {
         super.onResume();
-
         updateGrades();
     }
 
@@ -124,7 +126,9 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
         setGpa(points / hours);
         setHours(hours);
 
-        adapter.notifyDataSetChanged();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private double pointsForGrade(String grade) {
