@@ -31,13 +31,13 @@ import java.util.Locale;
 import edu.uncc.inclass12.databinding.FragmentGradesBinding;
 
 public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iGrades {
-    FragmentGradesBinding binding;
     DatabaseManager dm;
-    LinearLayoutManager layoutManager;
-    GradesRecyclerAdapter adapter;
-    List<Grade> grades = new ArrayList<>();
     Double hours = 0.0;
     Double points = 0.0;
+    FragmentGradesBinding binding;
+    GradesRecyclerAdapter adapter;
+    LinearLayoutManager layoutManager;
+    List<Grade> grades = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
