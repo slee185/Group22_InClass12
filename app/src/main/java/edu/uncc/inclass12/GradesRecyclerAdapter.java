@@ -42,7 +42,7 @@ public class GradesRecyclerAdapter extends RecyclerView.Adapter<GradesRecyclerAd
         Grade grade = grades.get(position);
         holder.textViewCourseNumber.setText(grade.courseNumber);
         holder.textViewCourseName.setText(grade.courseName);
-        holder.textViewCourseHours.setText((int) grade.creditHours);
+        holder.textViewCourseHours.setText(String.valueOf(grade.creditHours));
         holder.textViewCourseLetterGrade.setText(grade.courseGrade);
         holder.imageViewDelete.setOnClickListener(v -> iListener.trashButtonClicked(grade));
     }
