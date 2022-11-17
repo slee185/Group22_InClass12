@@ -123,7 +123,7 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
             points += pointsForGrade(grade.getCourseGrade()) * grade.getCreditHours();
         }
 
-        setGpa(hours > 0 ? points / hours : 0.0);
+        setGpa(hours > 0 ? points / hours : 4.0);
         setHours(hours);
 
         if (adapter != null) {
