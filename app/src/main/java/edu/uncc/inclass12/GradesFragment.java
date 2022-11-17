@@ -90,6 +90,7 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     public void onResume() {
         super.onResume();
 
+        grades = dm.gradesDAO.getAll();
     }
 
     GradesListener mListener;
