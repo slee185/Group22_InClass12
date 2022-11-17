@@ -55,6 +55,13 @@ public class AddCourseFragment extends Fragment {
                return;
             }
 
+            double hours = Double.parseDouble(courseHours);
+
+            if(hours <= 0) {
+                Toast.makeText(getContext(), "Please enter the number of hours", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if(selectedId == -1){
                 Toast.makeText(getContext(), "Please select a letter grade !!", Toast.LENGTH_SHORT).show();
                 return;
@@ -73,7 +80,7 @@ public class AddCourseFragment extends Fragment {
                 courseLetterGrade = "F";
             }
 
-            mListener.createGrade(courseNumber, courseName, courseLetterGrade, courseHours);
+            mListener.createGrade(courseNumber, courseName, courseLetterGrade, hours);
         });
 
         requireActivity().setTitle(R.string.add_label);
