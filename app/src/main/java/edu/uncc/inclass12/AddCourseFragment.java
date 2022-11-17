@@ -47,10 +47,11 @@ public class AddCourseFragment extends Fragment {
 
             String courseNumber = binding.editTextCourseNumber.getText().toString();
             String courseName = binding.editTextCourseName.getText().toString();
-            double courseHours = Double.parseDouble(binding.editTextCourseHours.getText().toString());
+            String courseHours = binding.editTextCourseHours.getText().toString();
+
             int selectedId = binding.radioGroupGrades.getCheckedRadioButtonId();
 
-            if(courseName.isEmpty() || courseNumber.isEmpty() || binding.editTextCourseHours.getText().toString().isEmpty()) {
+            if(courseName.isEmpty() || courseNumber.isEmpty() || courseHours.isEmpty()) {
                Toast.makeText(getContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
             } else if(selectedId == -1){
                 Toast.makeText(getContext(), "Please select a letter grade !!", Toast.LENGTH_SHORT).show();
