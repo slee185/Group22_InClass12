@@ -80,9 +80,6 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
         adapter = new GradesRecyclerAdapter(requireActivity(), grades, this);
         binding.gradesRecyclerView.setAdapter(adapter);
 
-        setGpa(points);
-        setHours(hours);
-
         requireActivity().setTitle(R.string.grades_label);
     }
 
@@ -90,7 +87,7 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     public void onResume() {
         super.onResume();
 
-        grades = dm.gradesDAO.getAll();
+        updateGrades();
     }
 
     GradesListener mListener;
@@ -109,6 +106,33 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     private void setHours(Double hours) {
         TextView textView = binding.textViewHours;
         textView.setText(getString(R.string.grades_hours_label, hours));
+    }
+
+    private void updateGrades() {
+        grades = dm.getGradesDAO().getAll();
+
+        hours = 0.0;
+        points = 0.0;
+
+        for (Grade grade: grades) {
+            hours += grade.getCreditHours();
+            points += pointsForGrade(grade.getCourseGrade()) * grade.getCreditHours();
+        }
+
+        setGpa(points / hours);
+        setHours(hours);
+
+        adapter.notifyDataSetChanged();
+    }
+
+    private double pointsForGrade(String grade) {
+        switch (grade.toUpperCase(Locale.ROOT)) {
+            case "A": return 4.0;
+            case "B": return 3.0;
+            case "C": return 2.0;
+            case "D": return 1.0;
+            default: return 0.0;
+        }
     }
 
     @Override
