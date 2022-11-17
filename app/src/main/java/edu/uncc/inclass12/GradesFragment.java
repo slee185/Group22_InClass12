@@ -134,7 +134,8 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
 
     private double pointsForGrade(String grade) {
         switch (grade.toUpperCase(Locale.ROOT)) {
-            case "A": return 4.0;            case "B": return 3.0;
+            case "A": return 4.0;
+            case "B": return 3.0;
             case "C": return 2.0;
             case "D": return 1.0;
             default: return 0.0;
