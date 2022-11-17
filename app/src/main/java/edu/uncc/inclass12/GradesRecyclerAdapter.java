@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GradesRecyclerAdapter extends RecyclerView.Adapter<GradesRecyclerAdapter.GradeViewHolder> {
-
     List<Grade> grades;
     iGrades iListener;
     Context layout;

@@ -19,7 +19,6 @@ import android.widget.Toast;
 import edu.uncc.inclass12.databinding.FragmentAddCourseBinding;
 
 public class AddCourseFragment extends Fragment {
-
     FragmentAddCourseBinding binding;
 
     @Override
@@ -46,31 +45,31 @@ public class AddCourseFragment extends Fragment {
 
             int selectedId = binding.radioGroupGrades.getCheckedRadioButtonId();
 
-            if(courseName.isEmpty() || courseNumber.isEmpty() || courseHours.isEmpty()) {
-               Toast.makeText(getContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
-               return;
+            if (courseName.isEmpty() || courseNumber.isEmpty() || courseHours.isEmpty()) {
+                Toast.makeText(getContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             double hours = Double.parseDouble(courseHours);
 
-            if(hours <= 0) {
+            if (hours <= 0) {
                 Toast.makeText(getContext(), "Please enter the number of hours", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if(selectedId == -1){
+            if (selectedId == -1) {
                 Toast.makeText(getContext(), "Please select a letter grade !!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             String courseLetterGrade;
-            if(selectedId == R.id.radioButtonA) {
+            if (selectedId == R.id.radioButtonA) {
                 courseLetterGrade = "A";
-            } else if(selectedId == R.id.radioButtonB) {
+            } else if (selectedId == R.id.radioButtonB) {
                 courseLetterGrade = "B";
-            } else if(selectedId == R.id.radioButtonC) {
+            } else if (selectedId == R.id.radioButtonC) {
                 courseLetterGrade = "C";
-            } else if(selectedId == R.id.radioButtonD) {
+            } else if (selectedId == R.id.radioButtonD) {
                 courseLetterGrade = "D";
             } else {
                 courseLetterGrade = "F";
@@ -92,6 +91,7 @@ public class AddCourseFragment extends Fragment {
 
     interface AddCourseListener {
         void createGrade(String course_number, String course_name, String course_grade, Double course_hours);
+
         void goGrades();
     }
 }

@@ -31,7 +31,6 @@ import java.util.Locale;
 import edu.uncc.inclass12.databinding.FragmentGradesBinding;
 
 public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iGrades {
-
     FragmentGradesBinding binding;
     DatabaseManager dm;
     LinearLayoutManager layoutManager;

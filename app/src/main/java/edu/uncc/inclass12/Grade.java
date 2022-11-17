@@ -5,13 +5,13 @@
 package edu.uncc.inclass12;
 
 public class Grade {
-
     long gradeId;
     String courseNumber;
     String courseName, courseGrade;
     double creditHours;
 
-    public Grade(){}
+    public Grade() {
+    }
 
     public Grade(long gradeId, String courseNumber, String courseName, String courseGrade, double creditHours) {
         this.gradeId = gradeId;

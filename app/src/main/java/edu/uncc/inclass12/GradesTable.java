@@ -8,7 +8,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 public class GradesTable {
-
     static final String GRADE_ID = "gradeId";
     static final String GRADES_TABLE = "grades";
     static final String COURSE_NUMBER = "courseNumber";
@@ -16,7 +15,7 @@ public class GradesTable {
     static final String COURSE_GRADE = "courseGrade";
     static final String CREDIT_HOURS = "creditHours";
 
-    static public void onCreate(SQLiteDatabase db){
+    static public void onCreate(SQLiteDatabase db) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("CREATE TABLE " + GradesTable.GRADES_TABLE + " (");
@@ -36,7 +35,7 @@ public class GradesTable {
     static public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
             db.execSQL("DROP TABLE IF EXISTS " + GradesTable.GRADES_TABLE);
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }

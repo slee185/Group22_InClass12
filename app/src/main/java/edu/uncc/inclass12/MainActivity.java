@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity implements GradesFragment.GradesListener, AddCourseFragment.AddCourseListener {
-
     DatabaseManager dm;
 
     @Override
