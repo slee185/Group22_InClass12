@@ -66,7 +66,7 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentGradesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
