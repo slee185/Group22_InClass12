@@ -70,14 +70,14 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dm = new DatabaseManager(getActivity());
+        dm = new DatabaseManager(requireActivity());
 
         binding.gradesRecyclerView.setHasFixedSize(true);
 
-        layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager = new LinearLayoutManager(requireActivity());
         binding.gradesRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new GradesRecyclerAdapter(getActivity(), grades, this);
+        adapter = new GradesRecyclerAdapter(requireActivity(), grades, this);
         binding.gradesRecyclerView.setAdapter(adapter);
 
         setGpa(points);
