@@ -85,8 +85,8 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
         adapter = new GradesRecyclerAdapter(getActivity(), grades, this);
         binding.gradesRecyclerView.setAdapter(adapter);
 
-        binding.textViewGPA.setText("GPA: " + points);
-        binding.textViewHours.setText("Hours: " + hours);
+        setGpa(points);
+        setHours(hours);
 
         requireActivity().setTitle(R.string.grades_label);
     }
