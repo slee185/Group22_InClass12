@@ -22,10 +22,6 @@ public class AddCourseFragment extends Fragment {
 
     FragmentAddCourseBinding binding;
 
-    public AddCourseFragment() {
-        // Required empty public constructor
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
