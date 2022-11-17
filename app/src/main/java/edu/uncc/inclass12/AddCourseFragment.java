@@ -70,6 +70,8 @@ public class AddCourseFragment extends Fragment {
                 mListener.createGrade(courseNumber, courseName, courseLetterGrade, courseHours);
             }
         });
+
+        requireActivity().setTitle(R.string.add_label);
     }
 
     AddCourseListener mListener;
