@@ -15,15 +15,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GradesRecyclerAdapter extends RecyclerView.Adapter<GradesRecyclerAdapter.GradeViewHolder> {
-
-    ArrayList<Grade> grades;
+    List<Grade> grades;
     iGrades iListener;
     Context layout;
     LayoutInflater mInflater;
 
-    public GradesRecyclerAdapter(Context layout, ArrayList<Grade> data, iGrades iListener) {
+    public GradesRecyclerAdapter(Context layout, List<Grade> data, iGrades iListener) {
         this.grades = data;
         this.iListener = iListener;
         this.mInflater = LayoutInflater.from(layout);
@@ -42,7 +42,7 @@ public class GradesRecyclerAdapter extends RecyclerView.Adapter<GradesRecyclerAd
         Grade grade = grades.get(position);
         holder.textViewCourseNumber.setText(grade.courseNumber);
         holder.textViewCourseName.setText(grade.courseName);
-        holder.textViewCourseHours.setText((int) grade.creditHours);
+        holder.textViewCourseHours.setText(String.valueOf(grade.creditHours));
         holder.textViewCourseLetterGrade.setText(grade.courseGrade);
         holder.imageViewDelete.setOnClickListener(v -> iListener.trashButtonClicked(grade));
     }

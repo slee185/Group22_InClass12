@@ -11,7 +11,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 
 public class GradesDAO {
-
     private SQLiteDatabase db;
 
     public GradesDAO(SQLiteDatabase db) {
@@ -41,7 +40,7 @@ public class GradesDAO {
     }
 
     public boolean delete(Grade grade) {
-       return db.delete(GradesTable.GRADES_TABLE, GradesTable.GRADE_ID + " = ?", new String[]{String.valueOf(grade.getGradeId())}) > 0;
+        return db.delete(GradesTable.GRADES_TABLE, GradesTable.GRADE_ID + " = ?", new String[]{String.valueOf(grade.getGradeId())}) > 0;
     }
 
     public boolean delete(long id) {
@@ -55,7 +54,7 @@ public class GradesDAO {
                 new String[]{GradesTable.GRADE_ID, GradesTable.COURSE_NUMBER, GradesTable.COURSE_NAME, GradesTable.COURSE_GRADE, GradesTable.CREDIT_HOURS}, GradesTable.GRADE_ID + " = ?",
                 new String[]{String.valueOf(id)}, null, null, null);
 
-        if(cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             grade = buildGradeFromCursor(cursor);
         }
 

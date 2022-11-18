@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import java.util.UUID;
-
 public class MainActivity extends AppCompatActivity implements GradesFragment.GradesListener, AddCourseFragment.AddCourseListener {
-
     DatabaseManager dm;
 
     @Override
@@ -21,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements GradesFragment.Gr
         dm = new DatabaseManager(this);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.rootView, new GradesFragment())
+                .add(R.id.rootView, new GradesFragment(dm))
                 .commit();
     }
 

@@ -4,6 +4,7 @@
 
 package edu.uncc.inclass12;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -25,23 +26,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import edu.uncc.inclass12.databinding.FragmentGradesBinding;
 
 public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iGrades {
-
-    FragmentGradesBinding binding;
     DatabaseManager dm;
-    LinearLayoutManager layoutManager;
-    GradesRecyclerAdapter adapter;
-    RecyclerView gradesRecyclerView;
-    ArrayList<Grade> grades;
     Double hours = 0.0;
     Double points = 0.0;
+    FragmentGradesBinding binding;
+    GradesRecyclerAdapter adapter;
+    LinearLayoutManager layoutManager;
+    List<Grade> grades = new ArrayList<>();
 
-    public GradesFragment() {
-        // Required empty public constructor
+    public GradesFragment(DatabaseManager dm) {
+        this.dm = dm;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentGradesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -75,16 +75,15 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dm = new DatabaseManager(getActivity());
-
         binding.gradesRecyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity());
-        gradesRecyclerView.setLayoutManager(layoutManager);
-        adapter = new GradesRecyclerAdapter(getActivity(), grades, this);
-        gradesRecyclerView.setAdapter(adapter);
 
-        binding.textViewGPA.setText("GPA: " + points);
-        binding.textViewHours.setText("Hours: " + hours);
+        layoutManager = new LinearLayoutManager(requireActivity());
+        binding.gradesRecyclerView.setLayoutManager(layoutManager);
+
+        updateGrades();
+
+        adapter = new GradesRecyclerAdapter(requireActivity(), grades, this);
+        binding.gradesRecyclerView.setAdapter(adapter);
 
         requireActivity().setTitle(R.string.grades_label);
     }
@@ -92,7 +91,7 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
     @Override
     public void onResume() {
         super.onResume();
-
+        updateGrades();
     }
 
     GradesListener mListener;
@@ -113,9 +112,41 @@ public class GradesFragment extends Fragment implements GradesRecyclerAdapter.iG
         textView.setText(getString(R.string.grades_hours_label, hours));
     }
 
+    private void updateGrades() {
+        grades = dm.getGradesDAO().getAll();
+
+        hours = 0.0;
+        points = 0.0;
+
+        for (Grade grade: grades) {
+            hours += grade.getCreditHours();
+            points += pointsForGrade(grade.getCourseGrade()) * grade.getCreditHours();
+        }
+
+        setGpa(hours > 0 ? points / hours : 4.0);
+        setHours(hours);
+
+        if (adapter != null) {
+            adapter.grades = grades;
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    private double pointsForGrade(String grade) {
+        switch (grade.toUpperCase(Locale.ROOT)) {
+            case "A": return 4.0;
+            case "B": return 3.0;
+            case "C": return 2.0;
+            case "D": return 1.0;
+            default: return 0.0;
+        }
+    }
+
     @Override
     public void trashButtonClicked(Grade grade) {
         dm.getGradesDAO().delete(grade);
+
+        updateGrades();
     }
 
     interface GradesListener {
